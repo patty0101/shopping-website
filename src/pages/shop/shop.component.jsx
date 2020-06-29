@@ -1,4 +1,5 @@
 import React from 'react'
+// 导入外部数据
 import SHOP_DATA from './shop.data.js'
 import CollectionPreview from '../../components/preview-collection/preview-collection.component.jsx'
 
