@@ -55,7 +55,7 @@
       border: 1px solid black;
       background-color: white;
       opacity:0.7;
-      // 父盒子是flex, 子盒子绝对定位会自动居中
+      // 父盒子是flex, 且align-items 和 justify-content 都等于 center 子盒子绝对定位 没有left top 等赋值时 会自动居中
       position:absolute;
   
       .title {
