@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link } from 'react-router-dom';
+// import {Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect';
 import {auth} from '../../firebase/firebase.utils'
@@ -8,35 +8,66 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 import {selectCartHidden} from '../../redux/cart/cart.selectors'
 import {selectCurrentUser} from '../../redux/user/user.selectors'
 import {ReactComponent as Logo} from '../../assets/crown.svg'
+import {HeaderContainer,LogoContainer,OptionsContainer,OptionDiv,OptionLink} from './header.styles.jsx'
 
 import './header.styles.scss';
 
+// const Header = ({currentUser,hidden}) => (
+//     <div className='header'>
+//         <Link to="/" className='logo-container'>
+//             <Logo className='logo'></Logo>
+//         </Link>
+//         <div className='options'>
+//             <Link className='option' to='/shop'>
+//                 SHOP
+//             </Link>
+//             <Link className='option' to='/shop'>
+//                 CONTACT
+//             </Link>
+//             {
+//                 currentUser?
+//                 <div className='option' onClick={()=>auth.signOut()}> SIGN OUT</div>
+//                 :
+//                 <Link className='option' to='/signin'> SIGN IN</Link>
+//             }
+//             <CartIcon></CartIcon>
+//         </div>
+//         {/* cartdropdown postition is absolute relative to the whole page */}
+//         {
+//             hidden? null:<CartDropdown/>
+//         }
+        
+//     </div>
+// )
+
+// replaced with styled component
 const Header = ({currentUser,hidden}) => (
-    <div className='header'>
-        <Link to="/" className='logo-container'>
-            <Logo className='logo'></Logo>
-        </Link>
-        <div className='options'>
-            <Link className='option' to='/shop'>
-                SHOP
-            </Link>
-            <Link className='option' to='/shop'>
-                CONTACT
-            </Link>
+    <HeaderContainer>
+        <LogoContainer to="/">
+        <Logo className='logo'></Logo>
+        </LogoContainer>
+        <OptionsContainer>
+            <OptionLink to='/shop'>SHOP</OptionLink>
+            <OptionLink to='/shop'>CONTACT</OptionLink>
             {
                 currentUser?
-                <div className='option' onClick={()=>auth.signOut()}> SIGN OUT</div>
+
+            // if the only differece between these two styled components is what type of base element it needs to return.
+            // inside component itself if optionLink optionDiv are same and we just want optionLink as a div, we can change it by using thd as property and then
+            // pass in the string
+                // <OptionDiv onClick={()=>auth.signOut()}> SIGN OUT</OptionDiv>
+                <OptionLink as='div' onClick={()=>auth.signOut()}> SIGN OUT</OptionLink>
                 :
-                <Link className='option' to='/signin'> SIGN IN</Link>
+                <OptionLink  to='/signin'> SIGN IN</OptionLink>
             }
             <CartIcon></CartIcon>
-        </div>
-        {/* cartdropdown postition is absolute relative to the whole page */}
-        {
+        </OptionsContainer>
+         {/* cartdropdown postition is absolute relative to the whole page */}
+         {
             hidden? null:<CartDropdown/>
         }
-        
-    </div>
+    </HeaderContainer>
+   
 )
 // this naming can be anyghing but mapStateToProps is standard with redux codebases
 //  state is the root  reducer
