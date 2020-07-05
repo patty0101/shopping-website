@@ -1,5 +1,9 @@
 .collection-item {
-    width: 22%;
+  //  the difference between 22 percent as a width is just 22 percent of the containing  divs width
+  //  so our containing divs width is 100 pixel  the the width would be 22 pixels
+  // 22vw means this component to be 22 percent of the width of the actual window
+    // width: 22%;
+    width:22vw;
     display: flex;
     flex-direction: column;
     height: 350px;

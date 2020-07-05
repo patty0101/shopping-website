@@ -6,13 +6,20 @@
 //  the middleware is that the store is expecting from redux is going to be an array and that array 
 import {createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger'
+//  what this does is it allows our brower to actually cache our store now depending on certain configuration options that we'ra going to set
+
+import {persistStore} from 'redux-persist'
 import rootReducer from './root-reducer';
 
 //  we just set it as this contast and we make it an array and inside is our logger middleware
 const middlewares = [logger]
 
 //  store is function gets both a root reducer and also the return value of apply middleware
-const store = createStore(rootReducer, applyMiddleware(...middlewares))
+ export const store = createStore(rootReducer, applyMiddleware(...middlewares))
+//  persistor is essentially a persisted version of our store,and using this and our store is how we will actually create our new provider that's wrapping our application.
+ export const persistor= persistStore(store)
 
+// return an object that gives both the store an the persistor
+export default {store,persistor}
 
-export default store
+//  store is a combination of our rootreducer and middleware
